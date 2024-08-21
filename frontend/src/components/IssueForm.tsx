@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './IssueForm.css';
 
 type IssueFormProps = {
   onIssueCreated: (newIssue: { title: string; description: string }) => void;
@@ -11,25 +12,27 @@ const IssueForm: React.FC<IssueFormProps> = ({ onIssueCreated }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onIssueCreated({ title, description });
-    setTitle('');  // Clear input fields after submission
+    setTitle('');
     setDescription('');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="form">
       <input
+        className="input"
         type="text"
         placeholder="Issue Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
       <input
+        className="input"
         type="text"
         placeholder="Issue Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-      <button type="submit">Create Issue</button>
+      <button className="button" type="submit">Create Issue</button>
     </form>
   );
 };
