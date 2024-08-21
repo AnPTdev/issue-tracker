@@ -3,7 +3,7 @@ import IssueList from './components/IssueList';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
+    <div className="issue-tracker">
       <IssueList />
     </div>
   );

@@ -22,13 +22,19 @@ const IssueList: React.FC = () => {
 
   const createIssue = (newIssue: { title: string; description: string }) => {
     if (newIssue.title && newIssue.description) {
-      const issue = { id: Date.now(), ...newIssue };
-      axios.post('http://localhost:3001/api/issues', issue)
-        .then(() => setIssues([...issues, issue]));
+      axios.post('http://localhost:3001/api/issues', newIssue)
+        .then((response) => {
+          const createdIssue = response.data;
+          setIssues([...issues, createdIssue]);
+        })
+        .catch((error) => {
+          console.error('There was an error creating the issue:', error);
+        });
     } else {
       alert('Please fill in both fields');
     }
   };
+  
 
   const startEditing = (issue: Issue) => {
     setEditingIssue(issue);
